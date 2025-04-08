@@ -11,14 +11,21 @@ def front_page():
 
     # Main menu of the program
     print("""
-        1. Create your own quiz
-        2. Meet the developer
-        3. Exit the program
+1. Create your own quiz
+2. Meet the developer
+3. Exit the program
         """)
     user_choice = input("Enter your choice: ").strip().lower() # Get user input for the choice
-    if user_choice in ["1", "one", "Create your own quiz"]:
+    if user_choice in ["1", "one", "create your own quiz"]:
         quiz_creator()
-       
+    elif user_choice in ["2", "two", "meet the developer"]:
+        developer_info()
+    elif user_choice in ["3", "three", "exit the program"]:
+        clear_screen()
+        print("Exiting the program...")
+    else:
+        print("Invalid choice. Please try again.")
+        
 
 
 def quiz_creator():
@@ -38,3 +45,12 @@ def quiz_creator():
 
 
 front_page()
+
+def clear_screen():
+    import os
+    os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
+    
+def developer_info():
+    print(Fore.GREEN + """
+Program made by: Gabriel Josh A. Obatay
+""" + Fore.RESET) # Print developer information in green color, reset color after
