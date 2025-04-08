@@ -1,6 +1,7 @@
 # Quiz Creator Python Program 
 
 from colorama import Fore # Module for colored text
+import os # Module for operating system functions
 import pyfiglet # Module for ASCII art
 import json # Module for JSON handling
 
@@ -19,8 +20,10 @@ def main_menu():
         user_choice = input("Enter your choice: ").strip().lower() # Get user input for the choice
         if user_choice in ["1", "one", "create your own quiz"]:
             quiz_creator()
+            break
         elif user_choice in ["2", "two", "meet the developer"]:
             developer_info()
+            break
         elif user_choice in ["3", "three", "exit the program"]:
             clear_screen()
             print("Exiting the program...")
@@ -28,9 +31,8 @@ def main_menu():
         else:
             print("Invalid choice. Please try again.")
             
-
-
 def quiz_creator():
+    clear_screen()
     quiz_question = {
         
     }
@@ -44,13 +46,11 @@ def quiz_creator():
     except FileExistsError:
         print("File already exists")
 
-
-
 def clear_screen():
-    import os
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
     
 def developer_info():
+    clear_screen()
     print(Fore.GREEN + """
 Program made by: BSCpE 1-6 | Gabriel Josh A. Obatay
 """ + Fore.RESET) # Print developer information in green color, reset color after
