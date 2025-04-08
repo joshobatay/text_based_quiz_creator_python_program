@@ -8,7 +8,7 @@ cars = {
     "year": 1983,
 }
 
-destination = "C:\Users\josho\OneDrive\Desktop\output.json"
+destination = "C:/Users/josho/OneDrive/Desktop/output.json"
 
 try:
     with open(destination, "w") as file:
