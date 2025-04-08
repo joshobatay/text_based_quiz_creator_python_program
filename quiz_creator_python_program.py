@@ -4,6 +4,13 @@ from colorama import Fore # Module for colored text
 import pyfiglet # Module for ASCII art
 import json # Module for JSON handling
 
+
+text = pyfiglet.figlet_format(text = "Welcome to the Quiz Creator!", font = "ansi_regular", width = 100)
+print(Fore.CYAN + text)
+
+
+'''
+
 quiz_question = {
     
 }
@@ -16,3 +23,5 @@ try:
         print("JSON file created successfully.")
 except FileExistsError:
     print("File already exists")
+
+'''
