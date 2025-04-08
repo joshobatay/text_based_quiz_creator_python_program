@@ -1,6 +1,7 @@
 # Quiz Creator Python Program 
 
 from colorama import Fore # Module for colored text
+from pathlib import Path # Module for file path handling
 import os # Module for operating system functions
 import pyfiglet # Module for ASCII art
 import json # Module for JSON handling
@@ -36,7 +37,8 @@ def quiz_creator():
         
     }
 
-    destination = "C:/Users/josho/OneDrive/Desktop/output.json"
+    desktop_path = Path.home() / "Desktop" # Path of the user's desktop
+    destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
     try:
         with open(destination, "w") as file:
@@ -59,5 +61,4 @@ Program made by: BSCpE 1-6 | Gabriel Josh A. Obatay
             clear_screen()
             break
         
-    
 main_menu()
