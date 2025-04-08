@@ -32,7 +32,7 @@ def main_menu():
             print("Invalid choice. Please try again.")
             
             
-# Ask user for name of the quiz
+
 # Ask user for the questions
 # Ask user for 4 possible answers, 1 correct answer and explanation
 # Ask user if they want to add more questions, program will stop and return to main menu if they say no
@@ -43,6 +43,13 @@ def main_menu():
             
 def quiz_creator():
     clear_screen()
+    
+    # Ask user for name of the quiz
+    quiz_name = input("Enter the name of the quiz: ").strip() # Ask user for the name of the quiz
+    
+    
+    
+    
     quiz_question = {
         
 
