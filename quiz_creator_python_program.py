@@ -31,6 +31,16 @@ def main_menu():
             clear_screen()
             print("Invalid choice. Please try again.")
             
+            
+# Ask user for name of the quiz
+# Ask user for the questions
+# Ask user for 4 possible answers, 1 correct answer and explanation
+# Ask user if they want to add more questions, program will stop and return to main menu if they say no
+# Save the quiz in JSON format             
+            
+            
+            
+            
 def quiz_creator():
     clear_screen()
     quiz_question = {
