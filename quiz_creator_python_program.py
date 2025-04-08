@@ -35,10 +35,11 @@ def quiz_creator():
     clear_screen()
     quiz_question = {
         
-        
+
+
     }
 
-    desktop_path = Path.home() / "Desktop" # Path of the user's desktop
+    desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
     destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
     try:
