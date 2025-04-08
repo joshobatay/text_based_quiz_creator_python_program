@@ -35,6 +35,7 @@ def quiz_creator():
     clear_screen()
     quiz_question = {
         
+        
     }
 
     desktop_path = Path.home() / "Desktop" # Path of the user's desktop
