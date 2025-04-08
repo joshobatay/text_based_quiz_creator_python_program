@@ -29,6 +29,7 @@ def main_menu():
             print("Exiting the program...")
             break
         else:
+            clear_screen()
             print("Invalid choice. Please try again.")
             
 def quiz_creator():
@@ -50,9 +51,15 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
     
 def developer_info():
-    clear_screen()
-    print(Fore.GREEN + """
-Program made by: BSCpE 1-6 | Gabriel Josh A. Obatay
-""" + Fore.RESET) # Print developer information in green color, reset color after
+    while True:
+        clear_screen()
+        print(Fore.GREEN + """
+    Program made by: BSCpE 1-6 | Gabriel Josh A. Obatay
+    """ + Fore.RESET) # Print developer information in green color, reset color after
+        choice = input("Press 'b' to go back to the main menu: ").strip().lower() 
+        if choice == "b":
+            clear_screen()
+            break
+        
     
 main_menu()
