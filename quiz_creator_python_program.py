@@ -1,15 +1,11 @@
-# Sample code testing
+# Quiz Creator Python Program 
 
-import json
+from colorama import Fore # Module for colored text
+import pyfiglet # Module for ASCII art
+import json # Module for JSON handling
 
 quiz_question = {
-    "Question": "When was the Philippines discovered?",
-    "Choices": {"A.": "1521", 
-                "B.": "1777", 
-                "C.": "1609", 
-                "D.": "1236"
-                },
-    "Correct Answer": "A. 1521"
+    
 }
 
 destination = "C:/Users/josho/OneDrive/Desktop/output.json"
