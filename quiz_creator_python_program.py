@@ -44,13 +44,13 @@ def quiz_creator():
 
 
 
-front_page()
-
 def clear_screen():
     import os
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
     
 def developer_info():
     print(Fore.GREEN + """
-Program made by: Gabriel Josh A. Obatay
+Program made by: BSCpE 1-6 | Gabriel Josh A. Obatay
 """ + Fore.RESET) # Print developer information in green color, reset color after
+    
+front_page()
