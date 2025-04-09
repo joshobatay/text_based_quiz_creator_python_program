@@ -35,7 +35,7 @@ def quiz_creator():
     clear_screen()
     
     # Ask user for name of the quiz
-    quiz_name = input("Enter the name of the quiz: ").strip() # Ask user for the name of the quiz
+    quiz_name = input(Fore.YELLOW + "Enter the name of the quiz: "+ Fore.RESET).strip() # Ask user for the name of the quiz
     
     quiz_data = {
         "quiz_name": quiz_name, # Stores the entered quiz name
@@ -45,16 +45,17 @@ def quiz_creator():
     question_count = 1
     
     while True:
-        question = input("Enter a question: ").strip() # Asks the user for a question
+       # clear_screen()
+        question = input(Fore.YELLOW + f"Enter question {question_count}: " + Fore.RESET).strip() # Asks the user for a question
         
         print(Fore.YELLOW + "Enter the Choices:" + Fore.RESET)
-        choice_A = input("A: ").strip() # First choice
-        choice_B = input("B: ").strip() # Second choice
-        choice_C = input("C: ").strip() # Third choice
-        choice_D = input("D: ").strip() # Fourth choice
+        choice_A = input(Fore.YELLOW + "A: " + Fore.RESET).strip() # First choice
+        choice_B = input(Fore.YELLOW + "B: " + Fore.RESET).strip() # Second choice
+        choice_C = input(Fore.YELLOW + "C: " + Fore.RESET).strip() # Third choice
+        choice_D = input(Fore.YELLOW + "D: " + Fore.RESET).strip() # Fourth choice
         
-        correct_answer = input("Enter the correct answer A|B|C|D: ").strip().upper() # Ask user for the correct answer
-        explanation = input("Enter the explanation: ").strip() # Ask user for the explanation of the correct answer
+        correct_answer = input(Fore.YELLOW + "Enter the correct answer (A|B|C|D): " + Fore.RESET).strip().upper() # Ask user for the correct answer
+        explanation = input(Fore.YELLOW + "Enter the explanation: " + Fore.RESET).strip() # Ask user for the explanation of the correct answer
         
         quiz_question = {
             "Question": question,
@@ -73,30 +74,41 @@ def quiz_creator():
         question_name = f"quiz_question{question_count}"
         quiz_data["questions"][question_name] = quiz_question
         
-        print(f"\nAdded Question: {question}")
-        print(f"A: {choice_A}\nB: {choice_B}\nC: {choice_C}\nD: {choice_D}")
-        print(f"Correct Answer: {correct_answer}")
-        print(f"Explanation: {explanation}")
+        clear_screen()
+        print(f"Quiz name: {Fore.GREEN + quiz_name + Fore.RESET}")
+        print(f"Added Question: {Fore.GREEN + question + Fore.RESET}")
+        print(f"A: {Fore.GREEN + choice_A + Fore.RESET}\nB: {Fore.GREEN + choice_B + Fore.RESET}")
+        print(f"C: {Fore.GREEN + choice_C + Fore.RESET}\nD: {Fore.GREEN + choice_D + Fore.RESET}" )
+        print(f"Correct Answer: {Fore.GREEN + correct_answer + Fore.RESET}")
+        print(f"Explanation: {Fore.GREEN + explanation + Fore.RESET}")
         
         # Ask user if they want to add more questions, program will stop and return to main menu if they type stop
         continue_choice = input("Do you want to create another question? (Type 'stop' to quit or press Enter to continue): ").strip().lower()
         if continue_choice == "stop":
+            clear_screen()
             print("Exiting the quiz creator...")
             break
     
         question_count += 1
+        clear_screen()
     
     if quiz_data["questions"]:    
         desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
         destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
-    try:
-        # Save the quiz in JSON format  
-        with open(destination, "w") as file:
-            json.dump(quiz_data, file, indent = 4)
-            print("JSON file created successfully.")
-    except FileExistsError:
-        print("File already exists")
+    if os.path.exists(destination):
+        overwrite = input(f"The file '{destination}' already exists. Do you want to overwrite it? (yes/no): ").strip().lower()
+        clear_screen()
+        if overwrite == "yes":
+            try:
+                # Save the quiz in JSON format  
+                with open(destination, "w") as file:
+                    json.dump(quiz_data, file, indent = 4)
+                    print("JSON file created successfully.")
+            except Exception as e:
+                print(f"An error occured: {e}")
+        else:
+            print("File not overwritten.")
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
