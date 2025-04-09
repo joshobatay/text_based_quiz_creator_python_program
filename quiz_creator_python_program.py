@@ -9,7 +9,10 @@ import json # Module for JSON handling
 # Front page of the program
 def main_menu():
     while True:
-        text = pyfiglet.figlet_format(text = "Welcome to the Quiz Creator!", font = "ansi_regular", width = 150) # Create ASCII art for the welcome message
+        text = pyfiglet.figlet_format(text = "Welcome to the Quiz Creator!", 
+                                      font = "ansi_regular", 
+                                      width = 150
+                                      ) # Create ASCII art for the welcome message
         print(Fore.CYAN + text + Fore.RESET) # Print the welcome message in cyan color, reset color after
 
         # Main menu of the program
@@ -35,7 +38,8 @@ def quiz_creator():
     clear_screen()
     
     # Ask user for name of the quiz
-    quiz_name = input(Fore.YELLOW + "Enter the name of the quiz: "+ Fore.RESET).strip() # Ask user for the name of the quiz
+    quiz_name = input(Fore.YELLOW + "Enter the name of the quiz: "+ Fore.RESET
+                      ).strip() # Ask user for the name of the quiz
     
     quiz_data = {
         "quiz_name": quiz_name, # Stores the entered quiz name
@@ -46,7 +50,8 @@ def quiz_creator():
     
     while True:
        # clear_screen()
-        question = input(Fore.YELLOW + f"Enter question {question_count}: " + Fore.RESET).strip() # Asks the user for a question
+        question = input(Fore.YELLOW + f"Enter question {question_count}: " + Fore.RESET
+                         ).strip() # Asks the user for a question
         
         print(Fore.YELLOW + "Enter the Choices:" + Fore.RESET)
         choice_A = input(Fore.YELLOW + "A: " + Fore.RESET).strip() # First choice
@@ -54,8 +59,16 @@ def quiz_creator():
         choice_C = input(Fore.YELLOW + "C: " + Fore.RESET).strip() # Third choice
         choice_D = input(Fore.YELLOW + "D: " + Fore.RESET).strip() # Fourth choice
         
-        correct_answer = input(Fore.YELLOW + "Enter the correct answer (A|B|C|D): " + Fore.RESET).strip().upper() # Ask user for the correct answer
-        explanation = input(Fore.YELLOW + "Enter the explanation: " + Fore.RESET).strip() # Ask user for the explanation of the correct answer
+        while True:
+            correct_answer = input(Fore.YELLOW + "Enter the correct answer (A|B|C|D): " + Fore.RESET
+                                ).strip().upper() # Ask user for the correct answer
+            if correct_answer in ["A", "B", "C", "D"]:
+                break
+            else:
+                print(Fore.RED + "Invalid choice. Please enter A, B, C, or D." + Fore.RESET)
+
+        explanation = input(Fore.YELLOW + "Enter the explanation: " + Fore.RESET
+                            ).strip() # Ask user for the explanation of the correct answer
         
         quiz_question = {
             "Question": question,
@@ -83,10 +96,12 @@ def quiz_creator():
         print(f"Explanation: {Fore.GREEN + explanation + Fore.RESET}")
         
         # Ask user if they want to add more questions, program will stop and return to main menu if they type stop
-        continue_choice = input("Do you want to create another question? (Type 'stop' to quit or press Enter to continue): ").strip().lower()
+        continue_choice = input(
+            f"Do you want to create another question? "
+            f"(Type {Fore.RED + 'stop' + Fore.RESET} to quit or press Enter to continue): ").strip().lower()
         if continue_choice == "stop":
             clear_screen()
-            print("Exiting the quiz creator...")
+            print(Fore.MAGENTA + "Exiting the quiz creator..." + Fore.RESET)
             break
     
         question_count += 1
@@ -97,7 +112,9 @@ def quiz_creator():
         destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
     if os.path.exists(destination):
-        overwrite = input(f"The file '{destination}' already exists. Do you want to overwrite it? (yes/no): ").strip().lower()
+        overwrite = input(
+            f"The file '{destination}' {Fore.RED + 'already exists.' + Fore.RESET} "
+            f"Do you want to {Fore.RED + 'overwrite it?' + Fore.RESET} (yes/no): ").strip().lower()
         clear_screen()
         if overwrite == "yes":
             try:
@@ -108,7 +125,7 @@ def quiz_creator():
             except Exception as e:
                 print(f"An error occured: {e}")
         else:
-            print("File not overwritten.")
+            print(Fore.MAGENTA + "File not overwritten." + Fore.RESET)
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
