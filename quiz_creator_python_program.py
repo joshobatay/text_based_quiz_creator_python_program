@@ -73,18 +73,27 @@ def quiz_creator():
             
         }
         
-        quiz_data["questions"][quiz_name] = quiz_question
+        quiz_data["questions"][question] = quiz_question
         
+        print(f"\nAdded Question: {question}")
+        print(f"A: {choice_A}, B: {choice_B}, C: {choice_C}, D: {choice_D}")
+        print(f"Correct Answer: {correct_answer}")
+        print(f"Explanation: {explanation}")
+        
+        continue_choice = input("Do you want to create another question? (Type 'stop' to quit or press Enter to continue): ").strip().lower()
+        if continue_choice == "stop":
+            print("Exiting the quiz creator...")
+            break
+        
+    desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
+    destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
-        desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
-        destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
-
-        try:
-            with open(destination, "w") as file:
-                json.dump(quiz_question, file, indent = 4)
-                print("JSON file created successfully.")
-        except FileExistsError:
-            print("File already exists")
+    try:
+        with open(destination, "w") as file:
+            json.dump(quiz_question, file, indent = 4)
+            print("JSON file created successfully.")
+    except FileExistsError:
+        print("File already exists")
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
