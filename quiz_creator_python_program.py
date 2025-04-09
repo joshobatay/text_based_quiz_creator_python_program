@@ -58,7 +58,6 @@ def quiz_creator():
         correct_answer = input("Enter the correct answer A|B|C|D: ").strip().upper() # Ask user for the correct answer
         explanation = input("Enter the explanation: ").strip() # Ask user for the explanation of the correct answer
         
-
         quiz_question = {
             "Question": question,
             "Choices": {
@@ -84,13 +83,14 @@ def quiz_creator():
         if continue_choice == "stop":
             print("Exiting the quiz creator...")
             break
-        
-    desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
-    destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
+    
+    if quiz_data["questions"]:    
+        desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
+        destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
     try:
         with open(destination, "w") as file:
-            json.dump(quiz_question, file, indent = 4)
+            json.dump(quiz_data, file, indent = 4)
             print("JSON file created successfully.")
     except FileExistsError:
         print("File already exists")
