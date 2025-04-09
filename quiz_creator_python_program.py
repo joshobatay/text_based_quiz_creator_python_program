@@ -30,10 +30,7 @@ def main_menu():
         else:
             clear_screen()
             print("Invalid choice. Please try again.")
-            
-# Ask user if they want to add more questions, program will stop and return to main menu if they say no
-# Save the quiz in JSON format             
-            
+                        
 def quiz_creator():
     clear_screen()
     
@@ -77,10 +74,11 @@ def quiz_creator():
         quiz_data["questions"][question_name] = quiz_question
         
         print(f"\nAdded Question: {question}")
-        print(f"A: {choice_A}, B: {choice_B}, C: {choice_C}, D: {choice_D}")
+        print(f"A: {choice_A}\nB: {choice_B}\nC: {choice_C}\nD: {choice_D}")
         print(f"Correct Answer: {correct_answer}")
         print(f"Explanation: {explanation}")
         
+        # Ask user if they want to add more questions, program will stop and return to main menu if they type stop
         continue_choice = input("Do you want to create another question? (Type 'stop' to quit or press Enter to continue): ").strip().lower()
         if continue_choice == "stop":
             print("Exiting the quiz creator...")
@@ -93,6 +91,7 @@ def quiz_creator():
         destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
 
     try:
+        # Save the quiz in JSON format  
         with open(destination, "w") as file:
             json.dump(quiz_data, file, indent = 4)
             print("JSON file created successfully.")
