@@ -73,7 +73,8 @@ def quiz_creator():
             
         }
         
-        quiz_data["questions"][question] = quiz_question
+        quiz_data["questions"][quiz_name] = quiz_question
+        
 
         desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
         destination = desktop_path / "create_your_own_quiz.json" # Destination for the JSON file
