@@ -45,8 +45,9 @@ def quiz_creator():
         "questions": {} # Dictionary to store entered questions and correct answers
     }
     
+    question_count = 1
+    
     while True:
-        
         question = input("Enter a question: ").strip() # Asks the user for a question
         
         print(Fore.YELLOW + "Enter the Choices:" + Fore.RESET)
@@ -72,7 +73,8 @@ def quiz_creator():
             
         }
         
-        quiz_data["questions"][question] = quiz_question
+        question_name = f"quiz_question{question_count}"
+        quiz_data["questions"][question_name] = quiz_question
         
         print(f"\nAdded Question: {question}")
         print(f"A: {choice_A}, B: {choice_B}, C: {choice_C}, D: {choice_D}")
@@ -83,6 +85,8 @@ def quiz_creator():
         if continue_choice == "stop":
             print("Exiting the quiz creator...")
             break
+    
+    question_count += 1
     
     if quiz_data["questions"]:    
         desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
