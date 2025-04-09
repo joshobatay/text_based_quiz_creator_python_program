@@ -86,7 +86,7 @@ def quiz_creator():
             print("Exiting the quiz creator...")
             break
     
-    question_count += 1
+        question_count += 1
     
     if quiz_data["questions"]:    
         desktop_path = Path.home() / "Desktop" # Path of the user's Desktop
