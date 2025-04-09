@@ -126,6 +126,14 @@ def quiz_creator():
                 print(f"An error occured: {e}")
         else:
             print(Fore.MAGENTA + "File not overwritten." + Fore.RESET)
+    
+    else:
+        try:
+            with open(destination, "w") as file:
+                json.dump(quiz_data, file, indent=4)
+                print("JSON file created successfully.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear') # Clear the screen for Windows or Unix-based systems
