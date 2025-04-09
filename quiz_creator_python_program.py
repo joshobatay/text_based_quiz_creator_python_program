@@ -31,15 +31,8 @@ def main_menu():
             clear_screen()
             print("Invalid choice. Please try again.")
             
-            
-
-# Ask user for the questions
-# Ask user for 4 possible answers, 1 correct answer and explanation
 # Ask user if they want to add more questions, program will stop and return to main menu if they say no
 # Save the quiz in JSON format             
-            
-            
-            
             
 def quiz_creator():
     clear_screen()
@@ -47,9 +40,25 @@ def quiz_creator():
     # Ask user for name of the quiz
     quiz_name = input("Enter the name of the quiz: ").strip() # Ask user for the name of the quiz
     
+    quiz_data = {
+        "quiz_name": quiz_name, # Stores the entered quiz name
+        "questions": {} # Dictionary to store entered questions and correct answers
+    }
     
-    
-    
+    while True:
+        
+        question = input("Enter a question: ").strip() # Asks the user for a question
+        
+        print(Fore.YELLOW + "Enter the Choices:" + Fore.RESET)
+        choice_A = input("A: ").strip() # First choice
+        choice_B = input("B: ").strip() # Second choice
+        choice_C = input("C: ").strip() # Third choice
+        choice_D = input("D: ").strip() # Fourth choice
+        
+        correct_answer = input("Enter the correct answer A|B|C|D: ").strip().upper() # Ask user for the correct answer
+        explanation = input("Enter the explanation: ").strip() # Ask user for the explanation of the correct answer
+        
+
     quiz_question = {
         
 
