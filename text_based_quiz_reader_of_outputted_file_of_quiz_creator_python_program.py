@@ -4,26 +4,33 @@ import tkinter as tk
 from tkinter import filedialog
 
 import pyfiglet
-from colorama import Fore
+from colorama import Fore, init
+
+init(autoreset=True)  # Initialize colorama to reset colors automatically
 
 # Main Menu
 def main_menu():
-    print("Welcome to the Quiz Reader!")
-    print("1. Read a quiz file")
-    print("2. Developer Information")
-    print("3. Exit")
+    while True:
+        text = "Welcome to the Quiz Reader!"
+        print(Fore.YELLOW + pyfiglet.figlet_format(text,
+                                                font="ansi_regular",
+                                                width=100))
+        print('''
+    1. Read a quiz file
+    2. Meet the developer
+    3. Exit the program
+        ''')
 
-    choice = input("Enter your choice: ")
-    if choice == "1":
-        quiz_reader()
-    elif choice == "2":
-        developer_info()
-    elif choice == "3":
-        print("Exiting...")
-        exit()
-    else:
-        print("Invalid choice. Please try again.")
-        main_menu()
+        user_choice = input("Enter your choice: ")
+        if user_choice == "1":
+            quiz_reader()
+        elif user_choice == "2":
+            developer_info()
+        elif user_choice == "3":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 # Main function to run the program
 def quiz_reader():
