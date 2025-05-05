@@ -69,48 +69,44 @@ def quiz_reader():
                 for option, answer in choices.items():
                     print(f"{option}: {answer}")
 
-                # User input for answer
-                user_answer = input("Your answer (A/B/C/D): ").strip().upper()
-
-                # Check if the answer is correct
-                if user_answer == question_data["Correct Answer"]:
-                    score += 1
-                    print(Fore.GREEN + "Correct!")
-                elif user_answer not in ["A", "B", "C", "D"]:
-                    print(Fore.RED + "Invalid choice. Please enter A, B, C, or D.")
-                    continue
-                else:
-                    life_hearts -= 1
-                    print(Fore.RED + f"Wrong! The correct answer was {question_data['Correct Answer']}.")
-                    print(Fore.YELLOW + f"You have {life_hearts} life hearts left.")
-                    
                 while True:
-                    print(f"Explanation: {question_data['Explanation']}\n")
-                    input("Press any key to continue... ")
-                    clear_screen()
-                    break
-            
+                # User input for answer
+                    user_answer = input("Your answer (A/B/C/D): ").strip().upper()
+                    
+                # Check if the answer is correct
+                    if user_answer == question_data["Correct Answer"]:
+                        score += 1
+                        print(Fore.GREEN + "Correct!")
+                        break
+                    
+                    elif user_answer not in ["A", "B", "C", "D"]:
+                        print(Fore.RED + "Invalid choice. Please enter A, B, C, or D.")
+                        continue
+                    
+                    else:
+                        life_hearts -= 1
+                        print(Fore.RED + f"Wrong! The correct answer was {question_data['Correct Answer']}.")
+                        print(Fore.YELLOW + f"You have {life_hearts} life hearts left.")
+                        break
+                        
+                print(f"Explanation: {question_data['Explanation']}\n")
+                input("Press any key to continue... ")
+                clear_screen()
+                
                 if life_hearts <= 0:
                     print(Fore.YELLOW + f"Score: {score} / {len(questions)}")
                     print(Fore.RED + "Game Over!")
-                    while True:
-                        input("Press any key to return to the main menu... ")
-                        clear_screen()
-                        main_menu()
-                        break
+                    return_to_main_menu()
+                    break
             
         if life_hearts > 0:
             print(Fore.GREEN + f"Congratulations! You completed the quiz with a score of {score}/{len(questions)}.")
-            while True:
-                input("Press any key to return to the main menu... ")
-                clear_screen()
-                break
+            return_to_main_menu()
             
     except Exception as e:
         print(f"Error reading the file: {e}")
         
 def select_difficulty():
-    
     clear_screen()
     
     print(f'''
@@ -141,7 +137,6 @@ Select difficulty level:
     
 # Developer information
 def developer_info():
-    
     clear_screen()
     
     while True:
@@ -157,6 +152,12 @@ def developer_info():
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+    
+def return_to_main_menu():
+    while True:
+        input("Press any key to return to the main menu... ")
+        clear_screen()
+        break   
     
 main_menu()
 
