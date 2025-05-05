@@ -1,4 +1,6 @@
 import os
+import time
+import sys
 import json
 import tkinter as tk
 from tkinter import filedialog
@@ -61,6 +63,7 @@ def quiz_reader():
         
             # Select difficulty level
             life_hearts = select_difficulty()
+            loading_screen()
             score = 0
             
             for key, question_data in questions.items():
@@ -100,7 +103,8 @@ def quiz_reader():
                     return
             
         if life_hearts > 0:
-            print(Fore.GREEN + f"Congratulations! You completed the quiz with a score of {score}/{len(questions)}.")
+            print(Fore.YELLOW + "Congratulations! " +
+                  Fore.GREEN + f"You completed the quiz with a score of {score}/{len(questions)}.")
             return_to_main_menu()
             
     except Exception as e:
@@ -159,4 +163,22 @@ def return_to_main_menu():
         clear_screen()
         break   
     
+def loading_screen():
+    clear_screen()
+    print(Fore.CYAN + "Loading...")
+
+    # Set the loading bar length
+    bar_length = 30  # Bar length in characters
+    for i in range(bar_length):
+        time.sleep(0.1)  # Simulate loading
+        progress = (i + 1) / bar_length  # Calculate the percentage of completion
+        bar = "=" * (i + 1)  # Create the progress bar
+        sys.stdout.write(f"\r[{bar:<{bar_length}}] {int(progress * 100)}%")  # Print the bar with percentage
+        sys.stdout.flush()  # Force the output to display immediately
+
+    time.sleep(0.5)
+    print("\n" + Fore.GREEN + "Ready!\n")
+    time.sleep(1)
+    clear_screen()
+
 main_menu()
