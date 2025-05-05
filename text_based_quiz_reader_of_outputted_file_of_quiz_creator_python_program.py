@@ -97,7 +97,7 @@ def quiz_reader():
                     print(Fore.YELLOW + f"Score: {score} / {len(questions)}")
                     print(Fore.RED + "Game Over!")
                     return_to_main_menu()
-                    break
+                    return
             
         if life_hearts > 0:
             print(Fore.GREEN + f"Congratulations! You completed the quiz with a score of {score}/{len(questions)}.")
@@ -117,17 +117,17 @@ Select difficulty level:
 {Fore.MAGENTA}4. Hardcore (1 life)
 ''')
 
-    difficuly_choice = input("Enter your choice (1 - 4): ")
-    if difficuly_choice == "1":
+    difficulty_choice = input("Enter your choice (1 - 4): ")
+    if difficulty_choice == "1":
         clear_screen()
         return 10
-    elif difficuly_choice == "2":
+    elif difficulty_choice == "2":
         clear_screen()
         return 5
-    elif difficuly_choice == "3":
+    elif difficulty_choice == "3":
         clear_screen()
         return 3
-    elif difficuly_choice == "4":
+    elif difficulty_choice == "4":
         clear_screen()
         return 1
     else:
@@ -160,4 +160,3 @@ def return_to_main_menu():
         break   
     
 main_menu()
-
