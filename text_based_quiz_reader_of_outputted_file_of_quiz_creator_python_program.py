@@ -76,6 +76,9 @@ def quiz_reader():
                 if user_answer == question_data["Correct Answer"]:
                     score += 1
                     print(Fore.GREEN + "Correct!")
+                elif user_answer not in ["A", "B", "C", "D"]:
+                    print(Fore.RED + "Invalid choice. Please enter A, B, C, or D.")
+                    continue
                 else:
                     life_hearts -= 1
                     print(Fore.RED + f"Wrong! The correct answer was {question_data['Correct Answer']}.")
@@ -90,10 +93,18 @@ def quiz_reader():
                 if life_hearts <= 0:
                     print(Fore.YELLOW + f"Score: {score} / {len(questions)}")
                     print(Fore.RED + "Game Over!")
-                    break
+                    while True:
+                        input("Press any key to return to the main menu... ")
+                        clear_screen()
+                        main_menu()
+                        break
             
         if life_hearts > 0:
             print(Fore.GREEN + f"Congratulations! You completed the quiz with a score of {score}/{len(questions)}.")
+            while True:
+                input("Press any key to return to the main menu... ")
+                clear_screen()
+                break
             
     except Exception as e:
         print(f"Error reading the file: {e}")
@@ -105,7 +116,7 @@ def select_difficulty():
     print(f'''
 Select difficulty level:
 {Fore.GREEN}1. Easy (10 lives)
-{Fore.YELLOW}2. Medium (5 lives)
+{Fore.YELLOW}2. Normal (5 lives)
 {Fore.RED}3. Hard (3 lives)
 {Fore.MAGENTA}4. Hardcore (1 life)
 ''')
