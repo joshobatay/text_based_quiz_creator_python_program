@@ -64,7 +64,7 @@ def quiz_reader():
             score = 0
             
             for key, question_data in questions.items():
-                print("\n" + question_data["Question"])
+                print(f"\n{Fore.YELLOW}" + key.replace('_', ' ').title() + ": " + question_data['Question'])
                 choices = question_data["Choices"]
                 for option, answer in choices.items():
                     print(f"{option}: {answer}")
@@ -80,8 +80,12 @@ def quiz_reader():
                     life_hearts -= 1
                     print(Fore.RED + f"Wrong! The correct answer was {question_data['Correct Answer']}.")
                     print(Fore.YELLOW + f"You have {life_hearts} life hearts left.")
-
-                print(f"Explanation: {question_data['Explanation']}\n")
+                    
+                while True:
+                    print(f"Explanation: {question_data['Explanation']}\n")
+                    input("Press any key to continue... ")
+                    clear_screen()
+                    break
             
                 if life_hearts <= 0:
                     print(Fore.YELLOW + f"Score: {score} / {len(questions)}")
@@ -96,24 +100,31 @@ def quiz_reader():
         
 def select_difficulty():
     
+    clear_screen()
+    
     print(f'''
 Select difficulty level:
-{Fore.GREEN} + "1. Easy",
-{Fore.YELLOW} + "2. Medium", 
-{Fore.RED} + "3. Hard",
-{Fore.MAGENTA} + "4. Hardcore
-    ''')
+{Fore.GREEN}1. Easy (10 lives)
+{Fore.YELLOW}2. Medium (5 lives)
+{Fore.RED}3. Hard (3 lives)
+{Fore.MAGENTA}4. Hardcore (1 life)
+''')
 
     difficuly_choice = input("Enter your choice (1 - 4): ")
     if difficuly_choice == "1":
+        clear_screen()
         return 10
     elif difficuly_choice == "2":
+        clear_screen()
         return 5
     elif difficuly_choice == "3":
+        clear_screen()
         return 3
     elif difficuly_choice == "4":
+        clear_screen()
         return 1
     else:
+        clear_screen()
         print("Invalid choice. Defaulting to Easy difficulty.")
         return 10
     
