@@ -37,19 +37,27 @@ def quiz_reader():
     
     clear_screen()
     
-    root = tk.Tk()
-    root.withdraw() 
-
+    temp_root = tk.Tk()
+    temp_root.withdraw() 
+    
     file_path = filedialog.askopenfilename(
         title="Select a quiz file",
-        file_types=[("JSON files", "*.json"), ("Text files", "*.txt")]
+        filetypes=[("JSON files", "*.json"), ("Text files", "*.txt")]
     )
 
-    with open(file_path, "r", encoding="utf-8") as file:
-        quiz_data = json.load(file)
-        
-        print(quiz_data)
+    temp_root.destroy()  # Close the temporary root window
 
+    if not file_path:
+        print("No file selected. Returning to main menu.")
+        return
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            quiz_data = json.load(file)
+            print(quiz_data)
+    except Exception as e:
+        print(f"Error reading the file: {e}")
+        
 # Developer information
 def developer_info():
     
