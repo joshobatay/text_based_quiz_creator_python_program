@@ -59,8 +59,10 @@ def quiz_reader():
             
             print(f"Welcome to the quiz: {quiz_name}\n")
         
-            # Start the quiz
+            # Select difficulty level
+            life_hearts = select_difficulty()
             score = 0
+            
             for key, question_data in questions.items():
                 print("\n" + question_data["Question"])
                 choices = question_data["Choices"]
@@ -75,15 +77,46 @@ def quiz_reader():
                     score += 1
                     print(Fore.GREEN + "Correct!")
                 else:
+                    life_hearts -= 1
                     print(Fore.RED + f"Wrong! The correct answer was {question_data['Correct Answer']}.")
+                    print(Fore.YELLOW + f"You have {life_hearts} life hearts left.")
 
-            print(f"\nYour score: {score}/{len(questions)}")
-            print("Thank you for playing!")
-        
-
+                print(f"Explanation: {question_data['Explanation']}\n")
+            
+                if life_hearts <= 0:
+                    print(Fore.YELLOW + f"Score: {score} / {len(questions)}")
+                    print(Fore.RED + "Game Over!")
+                    break
+            
+        if life_hearts > 0:
+            print(Fore.GREEN + f"Congratulations! You completed the quiz with a score of {score}/{len(questions)}.")
+            
     except Exception as e:
         print(f"Error reading the file: {e}")
         
+def select_difficulty():
+    
+    print(f'''
+Select difficulty level:
+{Fore.GREEN} + "1. Easy",
+{Fore.YELLOW} + "2. Medium", 
+{Fore.RED} + "3. Hard",
+{Fore.MAGENTA} + "4. Hardcore
+    ''')
+
+    difficuly_choice = input("Enter your choice (1 - 4): ")
+    if difficuly_choice == "1":
+        return 10
+    elif difficuly_choice == "2":
+        return 5
+    elif difficuly_choice == "3":
+        return 3
+    elif difficuly_choice == "4":
+        return 1
+    else:
+        print("Invalid choice. Defaulting to Easy difficulty.")
+        return 10
+    
 # Developer information
 def developer_info():
     
