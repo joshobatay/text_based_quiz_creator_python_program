@@ -54,7 +54,33 @@ def quiz_reader():
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             quiz_data = json.load(file)
-            print(quiz_data)
+            quiz_name = quiz_data["quiz_name"]
+            questions = quiz_data["questions"]
+            
+            print(f"Welcome to the quiz: {quiz_name}\n")
+        
+            # Start the quiz
+            score = 0
+            for key, question_data in questions.items():
+                print("\n" + question_data["Question"])
+                choices = question_data["Choices"]
+                for option, answer in choices.items():
+                    print(f"{option}: {answer}")
+
+                # User input for answer
+                user_answer = input("Your answer (A/B/C/D): ").strip().upper()
+
+                # Check if the answer is correct
+                if user_answer == question_data["Correct Answer"]:
+                    score += 1
+                    print(Fore.GREEN + "Correct!")
+                else:
+                    print(Fore.RED + f"Wrong! The correct answer was {question_data['Correct Answer']}.")
+
+            print(f"\nYour score: {score}/{len(questions)}")
+            print("Thank you for playing!")
+        
+
     except Exception as e:
         print(f"Error reading the file: {e}")
         
