@@ -36,7 +36,6 @@ def main_menu():
 
 # Main function to run the program
 def quiz_reader():
-    
     clear_screen()
     
     temp_root = tk.Tk()
@@ -146,13 +145,8 @@ def developer_info():
     while True:
         print(Fore.MAGENTA + "Developer: BSCpE 1-6 | Gabriel Josh A. Obatay")   
         print(Fore.GREEN + "Email: joshobatay2005@gmail.com")
-        
-        if input("Press 'b' to go back to the main menu: ").strip().lower() == "b":
-            clear_screen()
-            break
-        else:
-            print("Invalid input. Please try again.")
-            clear_screen()
+        return_to_main_menu()
+        return
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
