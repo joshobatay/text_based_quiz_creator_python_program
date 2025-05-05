@@ -16,9 +16,9 @@ def main_menu():
                                                 font="ansi_regular",
                                                 width=100))
         print('''
-    1. Read a quiz file
-    2. Meet the developer
-    3. Exit the program
+1. Read a quiz file
+2. Meet the developer
+3. Exit the program
         ''')
 
         user_choice = input("Enter your choice: ")
@@ -34,12 +34,15 @@ def main_menu():
 
 # Main function to run the program
 def quiz_reader():
+    
+    clear_screen()
+    
     root = tk.Tk()
     root.withdraw() 
 
     file_path = filedialog.askopenfilename(
         title="Select a quiz file",
-        filetypes=[("JSON files", "*.json"), ("Text files", "*.txt")]
+        file_types=[("JSON files", "*.json"), ("Text files", "*.txt")]
     )
 
     with open(file_path, "r", encoding="utf-8") as file:
@@ -49,8 +52,19 @@ def quiz_reader():
 
 # Developer information
 def developer_info():
-    print("Developer: BSCpE 1-6 | Gabriel Josh A. Obatay")
-    print("Email: joshobatay2005@gmail.com")
+    
+    clear_screen()
+    
+    while True:
+        print(Fore.MAGENTA + "Developer: BSCpE 1-6 | Gabriel Josh A. Obatay")   
+        print(Fore.GREEN + "Email: joshobatay2005@gmail.com")
+        
+        if input("Press 'b' to go back to the main menu: ").strip().lower() == "b":
+            clear_screen()
+            break
+        else:
+            print("Invalid input. Please try again.")
+            clear_screen()
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
