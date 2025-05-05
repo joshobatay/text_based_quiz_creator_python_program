@@ -1,6 +1,10 @@
+import os
 import json
 import tkinter as tk
 from tkinter import filedialog
+
+import pyfiglet
+from colorama import Fore
 
 # Main Menu
 def main_menu():
@@ -41,5 +45,8 @@ def developer_info():
     print("Developer: BSCpE 1-6 | Gabriel Josh A. Obatay")
     print("Email: joshobatay2005@gmail.com")
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
 main_menu()
 
